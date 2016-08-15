@@ -1,0 +1,34 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<!--
+`oc-tag-list`
+Element to display a list of tags on the Ordercloud platform
+
+@demo demo/index.html 
+-->
+
+<dom-module id="oc-tag-list">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h2>Hello [[prop1]]</h2>
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'oc-tag-list',
+
+      properties: {
+        prop1: {
+          type: String,
+          value: 'oc-tag-list',
+        },
+      },
+
+    });
+  </script>
+</dom-module>
