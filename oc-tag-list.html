@@ -1,10 +1,12 @@
 <link rel="import" href="../polymer/polymer.html">
 
+<link rel="import" href="../paper-icon-button/paper-icon-button.html">
+
 <!--
 `oc-tag-list`
 Element to display a list of tags on the Ordercloud platform
 
-@demo demo/index.html 
+@demo demo/index.html
 -->
 
 <dom-module id="oc-tag-list">
@@ -13,8 +15,30 @@ Element to display a list of tags on the Ordercloud platform
       :host {
         display: block;
       }
+
+      .tag {
+        border: 1px solid #2d5cf4;
+        background: #4285f4;
+        padding: 3px 5px;
+        display: inline-block;
+        color: #fff;
+        border-radius: 5px;
+        font-size: 11px;
+        cursor: pointer;
+      }
+
+      paper-icon-button {
+        width: 30px;
+        height: 30px;
+      }
     </style>
-    <h2>Hello [[prop1]]</h2>
+
+    <template is="dom-repeat" items="[[tagList]]" as="tag">
+      <div class="tag" on-tap="_selectTag">
+        <span hidden$="[[!removable]]">[[tag.tagType.name]] : </span><span>[[tag.name]]</span>
+        <paper-icon-button hidden$="[[!removable]]" icon="cancel" on-tap="_removeTag"></paper-icon-button>
+      </div>
+    </template>
   </template>
 
   <script>
@@ -23,11 +47,36 @@ Element to display a list of tags on the Ordercloud platform
       is: 'oc-tag-list',
 
       properties: {
-        prop1: {
-          type: String,
-          value: 'oc-tag-list',
+        tagList : Array,
+        removable: {
+          type: Boolean,
+          value: function(){
+            return false;
+          }
         },
+
+        selectable: {
+          type: Boolean,
+          value: function(){
+            return false;
+          }
+        }
       },
+
+      _removeTag : function(e){
+        if(!this.removable) {
+          return;
+        }
+        this.fire('tag-remove', e.model.get('tag'))
+      },
+
+      _selectTag : function(e){
+        if(!this.selectable) {
+          return;
+        }
+
+        this.fire('tag-select', e.model.get('tag'))
+      }
 
     });
   </script>

@@ -3,7 +3,8 @@
   "description": "Element to display a list of tags on the Ordercloud platform",
   "main": "oc-tag-list.html",
   "dependencies": {
-    "polymer": "Polymer/polymer#^1.4.0"
+    "polymer": "Polymer/polymer#^1.4.0",
+    "paper-icon-button": "PolymerElements/paper-icon-button#^1.1.2"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
